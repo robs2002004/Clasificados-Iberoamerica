@@ -1,0 +1,1059 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Clasificados de Iberoamérica — Anuncios en América, España, Portugal, Francia, Italia e Inglaterra</title>
+<meta name="description" content="Anuncios clasificados en toda Iberoamérica y Europa: vehículos, empleos, servicios, inmuebles y más.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --verde-selva:#1F3B33;
+    --verde-selva-osc:#152A24;
+    --mango:#F4A73C;
+    --coral:#E8623D;
+    --crema:#F5EFE0;
+    --crema-op:#F5EFE0CC;
+    --linea:#3A5A50;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--verde-selva);
+    color:var(--crema);
+    font-family:'Inter',sans-serif;
+    line-height:1.5;
+  }
+  a{color:inherit;text-decoration:none;}
+  .mono{font-family:'IBM Plex Mono',monospace;}
+
+  /* ---------- HEADER ---------- */
+  header{
+    position:sticky;top:0;z-index:50;
+    background:var(--verde-selva-osc);
+    border-bottom:2px solid var(--linea);
+  }
+  .header-inner{
+    max-width:1200px;margin:0 auto;padding:14px 20px;
+    display:flex;align-items:center;justify-content:space-between;gap:16px;
+  }
+  .logo{
+    font-family:'Archivo Black',sans-serif;
+    font-size:18px;letter-spacing:-0.5px;
+    display:flex;align-items:baseline;gap:6px;
+    flex-wrap:wrap;
+  }
+  .logo span{color:var(--mango);}
+  .btn-publicar{
+    background:var(--coral);color:var(--crema);
+    font-weight:700;font-size:14px;
+    padding:10px 18px;border-radius:6px;
+    border:none;cursor:pointer;
+    white-space:nowrap;
+  }
+  .btn-publicar:active{transform:translateY(1px);}
+
+  /* ---------- HERO ---------- */
+  .hero{
+    max-width:1200px;margin:0 auto;
+    padding:48px 20px 32px;
+    text-align:left;
+  }
+  .eyebrow{
+    font-family:'IBM Plex Mono',monospace;
+    color:var(--mango);font-size:13px;
+    letter-spacing:2px;text-transform:uppercase;
+    margin-bottom:14px;
+  }
+  .hero h1{
+    font-family:'Archivo Black',sans-serif;
+    font-size:clamp(32px,6vw,56px);
+    line-height:1.02;
+    max-width:780px;
+    letter-spacing:-1px;
+  }
+  .hero h1 em{
+    font-style:normal;color:var(--mango);
+  }
+  .hero p{
+    margin-top:16px;max-width:520px;
+    color:var(--crema-op);font-size:16px;
+  }
+
+  /* ---------- RUTA DE PAÍSES ---------- */
+  .ruta-section{
+    max-width:1200px;margin:0 auto;padding:0 20px 40px;
+  }
+  .ruta-label{
+    font-family:'IBM Plex Mono',monospace;
+    font-size:12px;letter-spacing:1.5px;text-transform:uppercase;
+    color:var(--mango);margin-bottom:10px;
+  }
+  .ruta{
+    background:var(--verde-selva-osc);
+    border:1px solid var(--linea);
+    border-radius:10px;
+    padding:16px;
+  }
+  .region-block{margin-bottom:14px;}
+  .region-block:last-child{margin-bottom:0;}
+  .region-title{
+    font-size:12px;font-weight:700;
+    color:var(--crema-op);
+    text-transform:uppercase;letter-spacing:1px;
+    margin-bottom:8px;
+    display:flex;align-items:center;gap:8px;
+  }
+  .region-title::after{
+    content:"";flex:1;height:1px;background:var(--linea);
+  }
+  .pais-lista{
+    display:flex;flex-wrap:wrap;gap:8px;
+  }
+  .pais-chip{
+    background:transparent;
+    border:1px solid var(--linea);
+    color:var(--crema);
+    padding:7px 14px;border-radius:999px;
+    font-size:13.5px;font-weight:500;
+    cursor:pointer;transition:background .15s,border-color .15s;
+  }
+  .pais-chip:hover{
+    border-color:var(--mango);
+    background:#F4A73C1A;
+  }
+  .pais-chip.activo{
+    background:var(--mango);
+    border-color:var(--mango);
+    color:var(--verde-selva-osc);
+    font-weight:700;
+  }
+
+  /* ---------- CATEGORÍAS ---------- */
+  .categorias-section{
+    max-width:1200px;margin:0 auto;padding:8px 20px 48px;
+  }
+  .section-header{
+    display:flex;align-items:baseline;justify-content:space-between;
+    margin-bottom:18px;flex-wrap:wrap;gap:8px;
+  }
+  .section-header h2{
+    font-family:'Archivo Black',sans-serif;
+    font-size:22px;letter-spacing:-0.3px;
+  }
+  .section-header .contador{
+    font-family:'IBM Plex Mono',monospace;
+    font-size:13px;color:var(--mango);
+  }
+  .cat-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fill,minmax(260px,1fr));
+    gap:14px;
+    align-items:start;
+  }
+  .cat-card{
+    background:var(--verde-selva-osc);
+    border:1px solid var(--linea);
+    border-radius:10px;
+    padding:18px 20px;
+    cursor:pointer;
+    transition:border-color .15s, box-shadow .15s;
+    position:relative;overflow:hidden;
+  }
+  .cat-card::before{
+    content:"";position:absolute;top:0;left:0;right:0;height:4px;
+    background:var(--cat-color,var(--coral));
+  }
+  .cat-card:hover{
+    border-color:var(--cat-color,var(--coral));
+    box-shadow:0 8px 20px rgba(0,0,0,.25);
+  }
+  .cat-card-head{
+    display:flex;align-items:center;justify-content:space-between;gap:10px;
+  }
+  .cat-card-titulo{display:flex;align-items:flex-start;gap:12px;}
+  .cat-icon{font-size:24px;line-height:1;}
+  .cat-card h3{font-size:16px;font-weight:700;margin-bottom:3px;}
+  .cat-card p{font-size:12.5px;color:var(--crema-op);}
+  .cat-count{
+    font-family:'IBM Plex Mono',monospace;
+    font-size:11px;color:var(--mango);
+    margin-top:2px;display:block;
+  }
+  .cat-toggle{
+    font-size:18px;color:var(--crema-op);
+    flex-shrink:0;
+    transition:transform .2s;
+  }
+  .cat-card.abierta .cat-toggle{transform:rotate(45deg);color:var(--mango);}
+  .subcat-lista{
+    display:none;
+    flex-wrap:wrap;gap:7px;
+    margin-top:14px;
+    padding-top:14px;
+    border-top:1px solid var(--linea);
+  }
+  .cat-card.abierta .subcat-lista{display:flex;}
+  .subcat-chip{
+    background:transparent;
+    border:1px solid var(--linea);
+    color:var(--crema-op);
+    padding:5px 11px;border-radius:999px;
+    font-size:12px;
+    cursor:pointer;
+    transition:border-color .15s,color .15s;
+  }
+  .subcat-chip:hover{
+    border-color:var(--cat-color,var(--mango));
+    color:var(--crema);
+  }
+
+  /* ---------- ANUNCIOS RECIENTES ---------- */
+  .anuncios-section{
+    max-width:1200px;margin:0 auto;padding:8px 20px 60px;
+  }
+  .anuncios-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fill,minmax(240px,1fr));
+    gap:14px;
+  }
+  .anuncio-card{
+    background:var(--verde-selva-osc);
+    border:1px solid var(--linea);
+    border-radius:10px;
+    overflow:hidden;
+    display:flex;flex-direction:column;
+    transition:border-color .15s;
+  }
+  .anuncio-card:hover{border-color:var(--mango);}
+  .anuncio-img{
+    height:130px;
+    background:linear-gradient(135deg,var(--linea),var(--verde-selva));
+    display:flex;align-items:center;justify-content:center;
+    font-size:28px;color:var(--crema-op);
+  }
+  .anuncio-body{padding:14px;flex:1;display:flex;flex-direction:column;gap:6px;}
+  .anuncio-titulo{font-size:14.5px;font-weight:600;line-height:1.3;}
+  .anuncio-meta{
+    font-size:12px;color:var(--crema-op);
+    display:flex;justify-content:space-between;align-items:center;
+    margin-top:auto;padding-top:8px;
+  }
+  .anuncio-precio{
+    font-family:'IBM Plex Mono',monospace;
+    color:var(--mango);font-weight:600;font-size:13px;
+  }
+  .estado-vacio{
+    background:var(--verde-selva-osc);
+    border:1px dashed var(--linea);
+    border-radius:10px;
+    padding:48px 20px;
+    text-align:center;
+  }
+  .estado-vacio-icon{font-size:30px;display:block;margin-bottom:12px;opacity:.7;}
+  .estado-vacio h3{font-size:17px;margin-bottom:6px;}
+  .estado-vacio p{font-size:13.5px;color:var(--crema-op);margin-bottom:18px;}
+
+  /* ---------- CTA PUBLICAR ---------- */
+  .cta-band{
+    background:var(--coral);
+    padding:40px 20px;
+    text-align:center;
+  }
+  .cta-band-inner{max-width:600px;margin:0 auto;}
+  .cta-band h2{
+    font-family:'Archivo Black',sans-serif;
+    font-size:26px;margin-bottom:10px;
+  }
+  .cta-band p{font-size:14.5px;margin-bottom:20px;color:#FFF3EA;}
+  .btn-cta-grande{
+    background:var(--verde-selva-osc);
+    color:var(--crema);
+    font-weight:700;font-size:15px;
+    padding:14px 28px;border-radius:6px;
+    border:none;cursor:pointer;
+  }
+
+  /* ---------- FOOTER ---------- */
+  footer{
+    background:var(--verde-selva-osc);
+    padding:30px 20px;
+    border-top:2px solid var(--linea);
+  }
+  .footer-inner{
+    max-width:1200px;margin:0 auto;
+    display:flex;justify-content:space-between;align-items:center;
+    flex-wrap:wrap;gap:12px;
+    font-size:13px;color:var(--crema-op);
+  }
+  .footer-inner a:hover{color:var(--mango);}
+
+  @media (max-width:640px){
+    .header-inner{padding:12px 16px;}
+    .logo{font-size:15px;}
+    .btn-publicar{padding:9px 14px;font-size:13px;}
+    .hero{padding:32px 16px 24px;}
+  }
+  /* ---------- PLANES ---------- */
+  .planes-section{
+    max-width:1200px;margin:0 auto;padding:8px 20px 50px;
+  }
+  .planes-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(230px,1fr));
+    gap:16px;
+  }
+  .plan-card{
+    background:var(--verde-selva-osc);
+    border:1px solid var(--linea);
+    border-radius:12px;
+    padding:26px 22px;
+    position:relative;
+    display:flex;flex-direction:column;
+  }
+  .plan-card.destacado{
+    border-color:var(--mango);
+    box-shadow:0 0 0 1px var(--mango);
+  }
+  .plan-etiqueta{
+    position:absolute;top:-11px;left:22px;
+    background:var(--mango);color:var(--verde-selva-osc);
+    font-size:11px;font-weight:700;letter-spacing:.5px;
+    padding:3px 10px;border-radius:999px;
+    text-transform:uppercase;
+  }
+  .plan-nombre{font-size:14px;font-weight:700;color:var(--crema-op);text-transform:uppercase;letter-spacing:.5px;}
+  .plan-precio{
+    font-family:'Archivo Black',sans-serif;
+    font-size:30px;margin:10px 0 16px;
+  }
+  .plan-precio span{font-family:'Inter',sans-serif;font-size:13px;font-weight:400;color:var(--crema-op);}
+  .plan-lista{list-style:none;flex:1;margin-bottom:20px;}
+  .plan-lista li{
+    font-size:13.5px;color:var(--crema-op);
+    padding:6px 0 6px 20px;position:relative;
+  }
+  .plan-lista li::before{
+    content:"✓";position:absolute;left:0;color:var(--mango);font-weight:700;
+  }
+  .btn-plan{
+    background:transparent;border:1.5px solid var(--mango);
+    color:var(--mango);font-weight:700;font-size:14px;
+    padding:11px;border-radius:6px;cursor:pointer;
+    transition:background .15s,color .15s;
+  }
+  .plan-card.destacado .btn-plan{background:var(--mango);color:var(--verde-selva-osc);}
+  .btn-plan:hover{background:var(--mango);color:var(--verde-selva-osc);}
+  .planes-nota{
+    text-align:center;font-size:13px;color:var(--crema-op);
+    margin-top:22px;
+  }
+
+  /* ---------- MODAL PUBLICAR ---------- */
+  .modal-overlay{
+    display:none;position:fixed;inset:0;z-index:100;
+    background:rgba(21,42,36,.85);
+    align-items:center;justify-content:center;
+    padding:20px;
+  }
+  .modal-overlay.abierto{display:flex;}
+  .modal-box{
+    background:var(--verde-selva-osc);
+    border:1px solid var(--linea);
+    border-radius:14px;
+    max-width:440px;width:100%;
+    max-height:88vh;overflow-y:auto;
+    padding:26px;
+  }
+  .modal-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:18px;}
+  .modal-head h3{font-family:'Archivo Black',sans-serif;font-size:19px;}
+  .modal-cerrar{background:none;border:none;color:var(--crema-op);font-size:22px;cursor:pointer;line-height:1;}
+  .campo{margin-bottom:16px;}
+  .campo label{
+    display:block;font-size:12.5px;font-weight:600;
+    color:var(--crema-op);margin-bottom:6px;
+  }
+  .campo input, .campo select, .campo textarea{
+    width:100%;background:var(--verde-selva);
+    border:1px solid var(--linea);border-radius:6px;
+    color:var(--crema);padding:10px 12px;font-size:14px;
+    font-family:'Inter',sans-serif;
+  }
+  .campo input:focus, .campo select:focus, .campo textarea:focus{
+    outline:2px solid var(--mango);outline-offset:1px;
+  }
+  .btn-google{
+    width:100%;display:flex;align-items:center;justify-content:center;gap:10px;
+    background:#F5EFE0;color:#1F3B33;
+    border:none;border-radius:6px;
+    padding:12px;font-weight:700;font-size:14px;
+    cursor:pointer;margin-bottom:6px;
+  }
+  .sesion-ok{
+    display:none;align-items:center;gap:10px;
+    background:#4E9A8B22;border:1px solid #4E9A8B;
+    border-radius:6px;padding:10px 12px;
+    font-size:13.5px;margin-bottom:16px;
+  }
+  .whatsapp-prefijo{
+    display:flex;gap:8px;
+  }
+  .whatsapp-prefijo select{flex:0 0 92px;}
+  .plan-select{display:flex;gap:8px;flex-wrap:wrap;}
+  .plan-opcion{
+    flex:1;min-width:100px;
+    border:1px solid var(--linea);border-radius:8px;
+    padding:10px;text-align:center;cursor:pointer;
+    font-size:12.5px;
+  }
+  .plan-opcion.activo{border-color:var(--mango);background:#F4A73C1A;}
+  .plan-opcion strong{display:block;font-size:14px;margin-bottom:2px;}
+  .btn-enviar-anuncio{
+    width:100%;background:var(--coral);color:var(--crema);
+    border:none;border-radius:6px;padding:13px;
+    font-weight:700;font-size:15px;cursor:pointer;margin-top:6px;
+  }
+  .btn-enviar-anuncio:disabled{opacity:.5;cursor:not-allowed;}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="header-inner">
+    <div class="logo">Clasificados<span>Iberoamérica</span></div>
+    <button class="btn-publicar" id="btn-publicar-header">+ Publicar anuncio</button>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="eyebrow">De Canadá a Argentina — y España, Portugal, Francia, Italia e Inglaterra</div>
+  <h1>Clasificados de <em>Iberoamérica.</em></h1>
+  <p>Publica y encuentra anuncios clasificados en América y Europa — vehículos, empleos, servicios, inmuebles y más. Inicia sesión con Google y compartí tu WhatsApp para que te contacten al instante.</p>
+</section>
+
+<section class="ruta-section">
+  <div class="ruta-label">Elegí tu país</div>
+  <div class="ruta" id="ruta-paises">
+
+    <div class="region-block">
+      <div class="region-title">Norteamérica</div>
+      <div class="pais-lista">
+        <button class="pais-chip">Canadá</button>
+        <button class="pais-chip">Estados Unidos</button>
+        <button class="pais-chip">México</button>
+      </div>
+    </div>
+
+    <div class="region-block">
+      <div class="region-title">Centroamérica</div>
+      <div class="pais-lista">
+        <button class="pais-chip">Guatemala</button>
+        <button class="pais-chip">Belice</button>
+        <button class="pais-chip activo">El Salvador</button>
+        <button class="pais-chip">Honduras</button>
+        <button class="pais-chip">Nicaragua</button>
+        <button class="pais-chip">Costa Rica</button>
+        <button class="pais-chip">Panamá</button>
+      </div>
+    </div>
+
+    <div class="region-block">
+      <div class="region-title">Caribe</div>
+      <div class="pais-lista">
+        <button class="pais-chip">Cuba</button>
+        <button class="pais-chip">República Dominicana</button>
+        <button class="pais-chip">Haití</button>
+        <button class="pais-chip">Puerto Rico</button>
+        <button class="pais-chip">Jamaica</button>
+        <button class="pais-chip">Trinidad y Tobago</button>
+        <button class="pais-chip">Bahamas</button>
+      </div>
+    </div>
+
+    <div class="region-block">
+      <div class="region-title">Sudamérica</div>
+      <div class="pais-lista">
+        <button class="pais-chip">Colombia</button>
+        <button class="pais-chip">Venezuela</button>
+        <button class="pais-chip">Ecuador</button>
+        <button class="pais-chip">Perú</button>
+        <button class="pais-chip">Bolivia</button>
+        <button class="pais-chip">Paraguay</button>
+        <button class="pais-chip">Chile</button>
+        <button class="pais-chip">Uruguay</button>
+        <button class="pais-chip">Argentina</button>
+        <button class="pais-chip">Brasil</button>
+        <button class="pais-chip">Guyana</button>
+        <button class="pais-chip">Surinam</button>
+      </div>
+    </div>
+
+    <div class="region-block">
+      <div class="region-title">Europa</div>
+      <div class="pais-lista">
+        <button class="pais-chip">España</button>
+        <button class="pais-chip">Portugal</button>
+        <button class="pais-chip">Francia</button>
+        <button class="pais-chip">Italia</button>
+        <button class="pais-chip">Inglaterra</button>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<section class="categorias-section">
+  <div class="section-header">
+    <h2>Categorías</h2>
+    <span class="contador mono">0 anuncios activos</span>
+  </div>
+  <div class="cat-grid" id="cat-grid">
+
+    <div class="cat-card" style="--cat-color:#C9A94F" data-cat>
+      <div class="cat-card-head">
+        <div class="cat-card-titulo">
+          <span class="cat-icon">🏠</span>
+          <div>
+            <h3>Viviendas / Locales</h3>
+            <span class="cat-count">0 anuncios</span>
+          </div>
+        </div>
+        <span class="cat-toggle">+</span>
+      </div>
+      <div class="subcat-lista">
+        <button class="subcat-chip">Casas / Chalets</button>
+        <button class="subcat-chip">Pisos / Áticos</button>
+        <button class="subcat-chip">Apartamentos</button>
+        <button class="subcat-chip">Oficinas / Locales / Naves</button>
+        <button class="subcat-chip">Plazas de Parking / Terrenos</button>
+        <button class="subcat-chip">Habitaciones</button>
+        <button class="subcat-chip">Casas Rurales / Costa</button>
+        <button class="subcat-chip">Otros</button>
+      </div>
+    </div>
+
+    <div class="cat-card" style="--cat-color:#4E9A8B" data-cat>
+      <div class="cat-card-head">
+        <div class="cat-card-titulo">
+          <span class="cat-icon">🤝</span>
+          <div>
+            <h3>Comunidad</h3>
+            <span class="cat-count">0 anuncios</span>
+          </div>
+        </div>
+        <span class="cat-toggle">+</span>
+      </div>
+      <div class="subcat-lista">
+        <button class="subcat-chip">Artistas / Músicos</button>
+        <button class="subcat-chip">Negocios</button>
+        <button class="subcat-chip">Mensajes</button>
+        <button class="subcat-chip">Comunidad Varios</button>
+        <button class="subcat-chip">Religión / Espiritualidad</button>
+        <button class="subcat-chip">Voluntariado</button>
+        <button class="subcat-chip">Compartir Afición</button>
+        <button class="subcat-chip">Intercambio de Idiomas</button>
+        <button class="subcat-chip">Compartir Coche</button>
+      </div>
+    </div>
+
+    <div class="cat-card" style="--cat-color:#E8623D" data-cat>
+      <div class="cat-card-head">
+        <div class="cat-card-titulo">
+          <span class="cat-icon">🛠️</span>
+          <div>
+            <h3>Servicios</h3>
+            <span class="cat-count">0 anuncios</span>
+          </div>
+        </div>
+        <span class="cat-toggle">+</span>
+      </div>
+      <div class="subcat-lista">
+        <button class="subcat-chip">Reformas / Construcción</button>
+        <button class="subcat-chip">Fiestas / Eventos</button>
+        <button class="subcat-chip">Otros Servicios</button>
+        <button class="subcat-chip">Belleza / Bienestar / Salud</button>
+        <button class="subcat-chip">Terapias / Yoga / Masajes</button>
+        <button class="subcat-chip">Informática / Multimedia</button>
+        <button class="subcat-chip">Fletes / Mudanzas / Transporte</button>
+        <button class="subcat-chip">Contabilidad / Ingeniería / Leyes</button>
+        <button class="subcat-chip">Mantenimiento / Limpieza</button>
+        <button class="subcat-chip">Tarot / Magia</button>
+        <button class="subcat-chip">Marketing / Publicidad</button>
+        <button class="subcat-chip">Viajes / Turismo</button>
+        <button class="subcat-chip">Préstamos</button>
+        <button class="subcat-chip">Animales / Mascotas</button>
+        <button class="subcat-chip">Imagen / Sonido</button>
+        <button class="subcat-chip">Electricistas</button>
+        <button class="subcat-chip">Seguridad / Vigilancia</button>
+        <button class="subcat-chip">Educación</button>
+        <button class="subcat-chip">Editorial / Traducciones</button>
+        <button class="subcat-chip">Hogar / Canguros</button>
+        <button class="subcat-chip">Decoración de Ambientes</button>
+        <button class="subcat-chip">Alquiler de Vehículos</button>
+        <button class="subcat-chip">Mantenimiento de Vehículos</button>
+      </div>
+    </div>
+
+    <div class="cat-card" style="--cat-color:#F4A73C" data-cat>
+      <div class="cat-card-head">
+        <div class="cat-card-titulo">
+          <span class="cat-icon">💼</span>
+          <div>
+            <h3>Empleo</h3>
+            <span class="cat-count">0 anuncios</span>
+          </div>
+        </div>
+        <span class="cat-toggle">+</span>
+      </div>
+      <div class="subcat-lista">
+        <button class="subcat-chip">Hogar / Canguro / Limpieza</button>
+        <button class="subcat-chip">Comercial / Ventas</button>
+        <button class="subcat-chip">Otros</button>
+        <button class="subcat-chip">Construcción / Mantenimiento</button>
+        <button class="subcat-chip">Trabajo desde Casa</button>
+        <button class="subcat-chip">Hostelería / Gastronomía</button>
+        <button class="subcat-chip">Logística / Transporte / Tráfico</button>
+        <button class="subcat-chip">Belleza / Estética / Masajes</button>
+        <button class="subcat-chip">Marketing / Publicidad</button>
+        <button class="subcat-chip">Administración</button>
+        <button class="subcat-chip">Atención al Cliente</button>
+        <button class="subcat-chip">Educación / Formación</button>
+        <button class="subcat-chip">Medicina / Servicios Sociales</button>
+        <button class="subcat-chip">Arte / Diseño / Teatro</button>
+        <button class="subcat-chip">Informática / Multimedia</button>
+        <button class="subcat-chip">Contabilidad / Finanzas</button>
+        <button class="subcat-chip">Recursos Humanos</button>
+        <button class="subcat-chip">Ingeniería</button>
+        <button class="subcat-chip">Estudiantes / Becas</button>
+        <button class="subcat-chip">Imagen / Sonido</button>
+        <button class="subcat-chip">Dirección de Empresas</button>
+      </div>
+    </div>
+
+    <div class="cat-card" style="--cat-color:#4E9A8B" data-cat>
+      <div class="cat-card-head">
+        <div class="cat-card-titulo">
+          <span class="cat-icon">📚</span>
+          <div>
+            <h3>Clases / Talleres</h3>
+            <span class="cat-count">0 anuncios</span>
+          </div>
+        </div>
+        <span class="cat-toggle">+</span>
+      </div>
+      <div class="subcat-lista">
+        <button class="subcat-chip">Otras Clases</button>
+        <button class="subcat-chip">Música / Teatro / Danza / Arte</button>
+        <button class="subcat-chip">Idiomas</button>
+        <button class="subcat-chip">Deportes</button>
+        <button class="subcat-chip">Informática / Multimedia</button>
+        <button class="subcat-chip">Talleres Literarios</button>
+      </div>
+    </div>
+
+    <div class="cat-card" style="--cat-color:#E8623D" data-cat>
+      <div class="cat-card-head">
+        <div class="cat-card-titulo">
+          <span class="cat-icon">🛍️</span>
+          <div>
+            <h3>Comprar / Vender</h3>
+            <span class="cat-count">0 anuncios</span>
+          </div>
+        </div>
+        <span class="cat-toggle">+</span>
+      </div>
+      <div class="subcat-lista">
+        <button class="subcat-chip">Coches / 4x4</button>
+        <button class="subcat-chip">Animales / Mascotas</button>
+        <button class="subcat-chip">Motos / Quads / Bicicletas</button>
+        <button class="subcat-chip">Artículos en General</button>
+        <button class="subcat-chip">Muebles / Electrodomésticos</button>
+        <button class="subcat-chip">Máquinas</button>
+        <button class="subcat-chip">Electrónica / Móviles</button>
+        <button class="subcat-chip">Ropa / Accesorios / Cosméticos</button>
+        <button class="subcat-chip">Música / Libros / Arte</button>
+        <button class="subcat-chip">Ordenador / Informática</button>
+        <button class="subcat-chip">Accesorios para Vehículos</button>
+        <button class="subcat-chip">Billetes / Entradas</button>
+        <button class="subcat-chip">Camiones / Tráilers</button>
+        <button class="subcat-chip">Deportes</button>
+        <button class="subcat-chip">Alimentos</button>
+        <button class="subcat-chip">Juegos / Consolas</button>
+        <button class="subcat-chip">Joyas / Relojes / Bisutería</button>
+        <button class="subcat-chip">Coleccionables</button>
+        <button class="subcat-chip">Barcos / Yates</button>
+        <button class="subcat-chip">Bricolaje / Jardín</button>
+        <button class="subcat-chip">Intercambios / Donaciones</button>
+        <button class="subcat-chip">Enseñanza</button>
+      </div>
+    </div>
+
+    <div class="cat-card" style="--cat-color:#C9A94F" data-cat>
+      <div class="cat-card-head">
+        <div class="cat-card-titulo">
+          <span class="cat-icon">💬</span>
+          <div>
+            <h3>Contactos</h3>
+            <span class="cat-count">0 anuncios</span>
+          </div>
+        </div>
+        <span class="cat-toggle">+</span>
+      </div>
+      <div class="subcat-lista">
+        <button class="subcat-chip">Relaciones Ocasionales</button>
+        <button class="subcat-chip">Chico Busca Chica</button>
+        <button class="subcat-chip">Chica Busca Chico</button>
+        <button class="subcat-chip">Chico Busca Chico</button>
+        <button class="subcat-chip">Chica Busca Chica</button>
+        <button class="subcat-chip">Pareja Busca Pareja</button>
+        <button class="subcat-chip">Amistad</button>
+        <button class="subcat-chip">Otros</button>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<section class="anuncios-section">
+  <div class="section-header">
+    <h2>Anuncios recientes</h2>
+    <span class="contador mono">El Salvador</span>
+  </div>
+  <div class="anuncios-grid" id="anuncios-recientes" style="display:none;"></div>
+  <div class="estado-vacio" id="estado-vacio">
+    <span class="estado-vacio-icon">📋</span>
+    <h3>Todavía no hay anuncios aquí</h3>
+    <p>Sé el primero en publicar en esta región.</p>
+    <button class="btn-cta-grande" onclick="location.href='#publicar'">Publicar el primer anuncio</button>
+  </div>
+</section>
+
+<section class="planes-section" id="planes">
+  <div class="section-header">
+    <h2>Planes para publicar</h2>
+    <span class="contador mono">Elegí cómo destacar tu anuncio</span>
+  </div>
+  <div class="planes-grid">
+    <div class="plan-card">
+      <div class="plan-nombre">Básico</div>
+      <div class="plan-precio">Gratis</div>
+      <ul class="plan-lista">
+        <li>1 anuncio activo</li>
+        <li>Visible 15 días</li>
+        <li>Aparece al final del listado</li>
+        <li>Sin fotos destacadas</li>
+      </ul>
+      <button class="btn-plan" data-plan="basico" data-precio="0">Publicar gratis</button>
+    </div>
+    <div class="plan-card destacado">
+      <div class="plan-etiqueta">Más elegido</div>
+      <div class="plan-nombre">Destacado</div>
+      <div class="plan-precio">$3.99<span>/anuncio</span></div>
+      <ul class="plan-lista">
+        <li>Visible 30 días</li>
+        <li>Aparece arriba en su categoría</li>
+        <li>Hasta 6 fotos</li>
+        <li>Insignia "Destacado"</li>
+      </ul>
+      <button class="btn-plan" data-plan="destacado" data-precio="3.99">Publicar destacado</button>
+    </div>
+    <div class="plan-card">
+      <div class="plan-nombre">Premium</div>
+      <div class="plan-precio">$9.99<span>/anuncio</span></div>
+      <ul class="plan-lista">
+        <li>Visible 60 días</li>
+        <li>Primer lugar en portada y categoría</li>
+        <li>Fotos ilimitadas</li>
+        <li>Renovación automática 1 vez</li>
+      </ul>
+      <button class="btn-plan" data-plan="premium" data-precio="9.99">Publicar premium</button>
+    </div>
+  </div>
+  <p class="planes-nota">También ofrecemos paquetes mensuales para negocios que publican varios anuncios — escríbenos por WhatsApp.</p>
+</section>
+
+<section class="cta-band" id="publicar">
+  <div class="cta-band-inner">
+    <h2>¿Tenés algo que anunciar?</h2>
+    <p>Iniciá sesión con Google, dejá tu WhatsApp y elegí tu plan.</p>
+    <button class="btn-cta-grande" id="btn-abrir-modal">Publicar mi anuncio</button>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-inner">
+    <span>© 2026 Clasificados Iberoamérica</span>
+    <span><a href="#">Condiciones de uso</a> · <a href="#">Guía de seguridad</a> · <a href="#">Contacto</a></span>
+  </div>
+</footer>
+
+<div class="modal-overlay" id="modal-publicar">
+  <div class="modal-box">
+    <div class="modal-head">
+      <h3>Publicar anuncio</h3>
+      <button class="modal-cerrar" id="btn-cerrar-modal">&times;</button>
+    </div>
+
+    <button class="btn-google" id="btn-google-signin">
+      <svg width="18" height="18" viewBox="0 0 18 18"><path fill="#4285F4" d="M17.64 9.2c0-.64-.06-1.25-.16-1.84H9v3.48h4.84c-.21 1.13-.84 2.09-1.8 2.73v2.27h2.92c1.7-1.57 2.68-3.88 2.68-6.64z"/><path fill="#34A853" d="M9 18c2.43 0 4.47-.8 5.96-2.18l-2.92-2.27c-.81.54-1.84.86-3.04.86-2.34 0-4.32-1.58-5.03-3.71H.96v2.34C2.44 15.98 5.48 18 9 18z"/><path fill="#FBBC05" d="M3.97 10.7c-.18-.54-.28-1.11-.28-1.7s.1-1.16.28-1.7V4.96H.96A8.996 8.996 0 000 9c0 1.45.35 2.83.96 4.04l3.01-2.34z"/><path fill="#EA4335" d="M9 3.58c1.32 0 2.51.45 3.44 1.35l2.59-2.59C13.46.89 11.43 0 9 0 5.48 0 2.44 2.02.96 4.96l3.01 2.34C4.68 5.16 6.66 3.58 9 3.58z"/></svg>
+      Continuar con Google
+    </button>
+    <div class="sesion-ok" id="sesion-ok">✅ <span>Sesión iniciada — listo para publicar</span></div>
+
+    <div class="campo">
+      <label>Título del anuncio</label>
+      <input type="text" id="campo-titulo" placeholder="Ej. Toyota Corolla 2018, único dueño">
+    </div>
+
+    <div class="campo">
+      <label>Categoría</label>
+      <select id="campo-categoria">
+        <option>Viviendas / Locales</option>
+        <option>Comunidad</option>
+        <option>Servicios</option>
+        <option>Empleo</option>
+        <option>Clases / Talleres</option>
+        <option>Comprar / Vender</option>
+        <option>Contactos</option>
+      </select>
+    </div>
+
+    <div class="campo">
+      <label>País</label>
+      <select id="modal-pais-select"></select>
+    </div>
+
+    <div class="campo">
+      <label>Descripción</label>
+      <textarea id="campo-descripcion" rows="3" placeholder="Detalles del anuncio..."></textarea>
+    </div>
+
+    <div class="campo">
+      <label>Tu número de WhatsApp</label>
+      <div class="whatsapp-prefijo">
+        <select id="campo-whatsapp-prefijo">
+          <option>+1</option><option>+52</option><option>+503</option><option>+504</option>
+          <option>+502</option><option>+505</option><option>+506</option><option>+507</option>
+          <option>+53</option><option>+1849</option><option>+1787</option><option>+1876</option>
+          <option>+57</option><option>+58</option><option>+593</option><option>+51</option>
+          <option>+591</option><option>+595</option><option>+56</option><option>+598</option>
+          <option>+54</option><option>+55</option><option>+34</option><option>+351</option>
+          <option>+33</option><option>+39</option><option>+44</option>
+        </select>
+        <input type="tel" id="campo-whatsapp-numero" placeholder="7712 3456">
+      </div>
+    </div>
+
+    <div class="campo">
+      <label>Plan</label>
+      <div class="plan-select">
+        <div class="plan-opcion activo" data-plan="basico" data-precio="0">
+          <strong>Gratis</strong>15 días
+        </div>
+        <div class="plan-opcion" data-plan="destacado" data-precio="3.99">
+          <strong>$3.99</strong>Destacado
+        </div>
+        <div class="plan-opcion" data-plan="premium" data-precio="9.99">
+          <strong>$9.99</strong>Premium
+        </div>
+      </div>
+    </div>
+
+    <button class="btn-enviar-anuncio" id="btn-enviar-anuncio" disabled>Iniciá sesión para continuar</button>
+  </div>
+</div>
+
+<script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore-compat.js"></script>
+<script>
+  // TODO: reemplazar con la config de TU proyecto de Firebase
+  // (Firebase Console → ⚙️ Configuración del proyecto → tus apps → SDK setup)
+  const firebaseConfig = {
+    apiKey: "TU_API_KEY",
+    authDomain: "TU-PROYECTO.firebaseapp.com",
+    projectId: "TU-PROYECTO",
+    storageBucket: "TU-PROYECTO.appspot.com",
+    messagingSenderId: "TU_SENDER_ID",
+    appId: "TU_APP_ID"
+  };
+  firebase.initializeApp(firebaseConfig);
+  const auth = firebase.auth();
+  const db = firebase.firestore();
+
+  // URL de tu Cloud Function que crea la sesión de pago (ver functions/index.js)
+  const URL_CREAR_PAGO = "https://us-central1-TU-PROYECTO.cloudfunctions.net/crearSesionPago";
+</script>
+
+<script>
+  // Expandir / colapsar categorías
+  // (bloque original de categorías, país y país-modal a continuación)
+  document.querySelectorAll('[data-cat]').forEach(card=>{
+    card.querySelector('.cat-card-head').addEventListener('click',(e)=>{
+      const yaAbierta = card.classList.contains('abierta');
+      document.querySelectorAll('[data-cat]').forEach(c=>c.classList.remove('abierta'));
+      if(!yaAbierta) card.classList.add('abierta');
+    });
+  });
+  // Evitar que clic en subcategoría cierre la tarjeta sin querer
+  document.querySelectorAll('.subcat-chip').forEach(chip=>{
+    chip.addEventListener('click', e=> e.stopPropagation());
+  });
+
+  // Selección de país (visual, sin lógica de datos todavía)
+  document.querySelectorAll('.pais-chip').forEach(chip=>{
+    chip.addEventListener('click',()=>{
+      document.querySelectorAll('.pais-chip').forEach(c=>c.classList.remove('activo'));
+      chip.classList.add('activo');
+      document.querySelector('.anuncios-section .contador').textContent = chip.textContent;
+    });
+  });
+
+  // Llenar el select de país dentro del modal con todos los países de la ruta
+  const modalPaisSelect = document.getElementById('modal-pais-select');
+  document.querySelectorAll('.pais-chip').forEach(chip=>{
+    const opt = document.createElement('option');
+    opt.textContent = chip.textContent;
+    modalPaisSelect.appendChild(opt);
+  });
+
+  // Abrir / cerrar modal de publicación
+  const modal = document.getElementById('modal-publicar');
+  document.getElementById('btn-abrir-modal').addEventListener('click', ()=> modal.classList.add('abierto'));
+  document.getElementById('btn-publicar-header')?.addEventListener('click', ()=> modal.classList.add('abierto'));
+  document.getElementById('btn-cerrar-modal').addEventListener('click', ()=> modal.classList.remove('abierto'));
+  modal.addEventListener('click', e=>{ if(e.target === modal) modal.classList.remove('abierto'); });
+
+  // ---- Autenticación real con Google ----
+  let usuarioActual = null;
+  const btnEnviar = document.getElementById('btn-enviar-anuncio');
+
+  auth.onAuthStateChanged(user=>{
+    usuarioActual = user;
+    if(user){
+      document.getElementById('btn-google-signin').style.display = 'none';
+      const sesionOk = document.getElementById('sesion-ok');
+      sesionOk.style.display = 'flex';
+      sesionOk.querySelector('span').textContent = `Sesión: ${user.displayName || user.email}`;
+    }
+    actualizarBotonEnviar();
+  });
+
+  document.getElementById('btn-google-signin').addEventListener('click', ()=>{
+    const provider = new firebase.auth.GoogleAuthProvider();
+    auth.signInWithPopup(provider).catch(err=>{
+      alert('No se pudo iniciar sesión: ' + err.message);
+    });
+  });
+
+  // ---- Selección de plan dentro del modal ----
+  let planActual = {nombre:'basico', precio:0};
+  document.querySelectorAll('.plan-opcion').forEach(op=>{
+    op.addEventListener('click', ()=>{
+      document.querySelectorAll('.plan-opcion').forEach(o=>o.classList.remove('activo'));
+      op.classList.add('activo');
+      planActual = {nombre: op.dataset.plan, precio: parseFloat(op.dataset.precio)};
+      actualizarBotonEnviar();
+    });
+  });
+
+  function actualizarBotonEnviar(){
+    if(!usuarioActual){
+      btnEnviar.disabled = true;
+      btnEnviar.textContent = 'Iniciá sesión para continuar';
+    } else if(planActual.precio > 0){
+      btnEnviar.disabled = false;
+      btnEnviar.textContent = `Pagar $${planActual.precio.toFixed(2)} y publicar`;
+    } else {
+      btnEnviar.disabled = false;
+      btnEnviar.textContent = 'Publicar anuncio gratis';
+    }
+  }
+
+  // Botones "Publicar" de la sección de Planes: abren el modal con ese plan preseleccionado
+  document.querySelectorAll('.btn-plan').forEach(btn=>{
+    btn.addEventListener('click', ()=>{
+      modal.classList.add('abierto');
+      document.querySelectorAll('.plan-opcion').forEach(o=>{
+        o.classList.toggle('activo', o.dataset.plan === btn.dataset.plan);
+      });
+      planActual = {nombre: btn.dataset.plan, precio: parseFloat(btn.dataset.precio)};
+      actualizarBotonEnviar();
+    });
+  });
+
+  function leerFormulario(){
+    return {
+      titulo: document.getElementById('campo-titulo').value.trim(),
+      categoria: document.getElementById('campo-categoria').value,
+      pais: document.getElementById('modal-pais-select').value,
+      descripcion: document.getElementById('campo-descripcion').value.trim(),
+      whatsapp: document.getElementById('campo-whatsapp-prefijo').value + document.getElementById('campo-whatsapp-numero').value.trim()
+    };
+  }
+
+  // ---- Publicar anuncio (gratis = directo a Firestore; pago = redirige a Stripe) ----
+  btnEnviar.addEventListener('click', async ()=>{
+    if(!usuarioActual) return;
+    const datos = leerFormulario();
+    if(!datos.titulo || !datos.whatsapp){
+      alert('Completá al menos el título y el número de WhatsApp.');
+      return;
+    }
+
+    btnEnviar.disabled = true;
+
+    if(planActual.nombre === 'basico'){
+      // Plan gratis: se escribe directo en Firestore
+      btnEnviar.textContent = 'Publicando...';
+      try{
+        const dias = 15;
+        const expira = new Date(Date.now() + dias*24*60*60*1000);
+        await db.collection('anuncios').add({
+          ...datos,
+          uid: usuarioActual.uid,
+          email: usuarioActual.email,
+          plan: 'basico',
+          precioPagado: 0,
+          estadoPago: 'gratis',
+          destacado: false,
+          estado: 'activo',
+          fechaCreacion: firebase.firestore.FieldValue.serverTimestamp(),
+          fechaExpiracion: firebase.firestore.Timestamp.fromDate(expira)
+        });
+        alert('¡Anuncio publicado!');
+        modal.classList.remove('abierto');
+      }catch(err){
+        alert('Error al publicar: ' + err.message);
+      }
+      actualizarBotonEnviar();
+    } else {
+      // Plan de pago: la Cloud Function crea el doc en Firestore (pendiente de pago)
+      // y devuelve la URL de Stripe Checkout para redirigir al usuario
+      btnEnviar.textContent = 'Redirigiendo a pago...';
+      try{
+        const resp = await fetch(URL_CREAR_PAGO, {
+          method: 'POST',
+          headers: {'Content-Type':'application/json'},
+          body: JSON.stringify({
+            ...datos,
+            uid: usuarioActual.uid,
+            email: usuarioActual.email,
+            plan: planActual.nombre,
+            precio: planActual.precio
+          })
+        });
+        const data = await resp.json();
+        if(data.url){ window.location.href = data.url; }
+        else { throw new Error(data.error || 'No se recibió URL de pago'); }
+      }catch(err){
+        alert('Error al iniciar el pago: ' + err.message);
+        actualizarBotonEnviar();
+      }
+    }
+  });
+</script>
+
+</body>
+</html>
