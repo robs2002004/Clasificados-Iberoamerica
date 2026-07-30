@@ -27,7 +27,7 @@ const DIAS_POR_PLAN = {
 };
 
 // URL base de tu sitio (para success_url / cancel_url de Stripe)
-const SITIO_URL = "https://www.runcar.app"; // TODO: ajustar al dominio real del sitio de clasificados
+const SITIO_URL = "https://robs2002004.github.io/Clasificados-Iberoamerica/"; // TODO: ajustar al dominio real
 
 /**
  * 1) El cliente llama esta función cuando elige un plan de pago.
