@@ -21,7 +21,7 @@ jobs:
 
       - name: Instalar dependencias
         working-directory: functions
-        run: npm ci
+        run: npm install
 
       - name: Desplegar a Firebase
         uses: w9jds/firebase-action@master
