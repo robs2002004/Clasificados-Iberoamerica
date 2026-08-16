@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Confirmando tu pago... — Clasificados Iberoamérica</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'Segoe UI', Arial, sans-serif;
+    background: #0d1b1e;
+    color: #fff;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+  }
+  .card {
+    background: #142a2e;
+    border-radius: 16px;
+    padding: 40px 30px;
+    max-width: 420px;
+    width: 100%;
+    text-align: center;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+  }
+  .icon {
+    font-size: 56px;
+    margin-bottom: 16px;
+  }
+  h1 {
+    font-size: 22px;
+    margin-bottom: 12px;
+  }
+  p {
+    color: #b8c4c6;
+    line-height: 1.5;
+    margin-bottom: 20px;
+  }
+  .spinner {
+    width: 40px;
+    height: 40px;
+    border: 4px solid rgba(255,255,255,0.15);
+    border-top-color: #ff8a00;
+    border-radius: 50%;
+    margin: 0 auto 20px;
+    animation: spin 0.8s linear infinite;
+  }
+  @keyframes spin { to { transform: rotate(360deg); } }
+  .btn {
+    display: inline-block;
+    margin-top: 10px;
+    padding: 12px 28px;
+    background: #ff8a00;
+    color: #0d1b1e;
+    font-weight: bold;
+    border: none;
+    border-radius: 8px;
+    text-decoration: none;
+    cursor: pointer;
+  }
+  .btn:hover { opacity: 0.9; }
+  .error { color: #ff6b6b; }
+  .success { color: #4ade80; }
+  .hidden { display: none; }
+</style>
+</head>
+<body>
+
+<div class="card">
+
+  <div id="estado-cargando">
+    <div class="spinner"></div>
+    <h1>Confirmando tu pago...</h1>
+    <p>No cierres esta página. Esto solo toma unos segundos.</p>
+  </div>
+
+  <div id="estado-exito" class="hidden">
+    <div class="icon success">✅</div>
+    <h1>¡Listo, tu anuncio ya está activo!</h1>
+    <p>Tu pago se confirmó correctamente y tu anuncio ya es visible para todos.</p>
+    <a class="btn" href="./">Ver Clasificados Iberoamérica</a>
+  </div>
+
+  <div id="estado-error" class="hidden">
+    <div class="icon error">⚠️</div>
+    <h1>No pudimos confirmar tu pago</h1>
+    <p id="mensaje-error">Hubo un problema al confirmar el pago. Si PayPal ya te cobró, contáctanos con el número de tu anuncio y lo resolvemos.</p>
+    <a class="btn" href="./">Volver al inicio</a>
+  </div>
+
+</div>
+
+<script>
+  // URL de la función capturarPago (la misma que usa tu index.html para crearSesionPago,
+  // cambiando el nombre de la función al final).
+  const URL_CAPTURAR_PAGO = "https://us-central1-clasificados-iberoamerica.cloudfunctions.net/capturarPago";
+
+  function mostrarEstado(id) {
+    document.getElementById('estado-cargando').classList.add('hidden');
+    document.getElementById('estado-exito').classList.add('hidden');
+    document.getElementById('estado-error').classList.add('hidden');
+    document.getElementById(id).classList.remove('hidden');
+  }
+
+  async function confirmarPago() {
+    const params = new URLSearchParams(window.location.search);
+    // PayPal agrega el id de la orden como "token" en la URL de retorno.
+    const orderId = params.get('token');
+    const anuncioId = params.get('anuncioId');
+
+    if (!orderId) {
+      document.getElementById('mensaje-error').textContent =
+        'Falta el identificador del pago en la URL. No podemos confirmar tu anuncio.';
+      mostrarEstado('estado-error');
+      return;
+    }
+
+    try {
+      const resp = await fetch(URL_CAPTURAR_PAGO, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ orderId })
+      });
+      const data = await resp.json();
+
+      if (!resp.ok || !data.ok) {
+        document.getElementById('mensaje-error').textContent =
+          data.error || 'No se pudo confirmar el pago.';
+        mostrarEstado('estado-error');
+        return;
+      }
+
+      mostrarEstado('estado-exito');
+    } catch (err) {
+      document.getElementById('mensaje-error').textContent =
+        'Error de conexión al confirmar el pago: ' + err.message;
+      mostrarEstado('estado-error');
+    }
+  }
+
+  confirmarPago();
+</script>
+
+</body>
+</html>
