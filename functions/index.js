@@ -194,5 +194,5 @@ exports.paypalWebhook = onRequest(async (req, res) => {
 
 7. Cuando termines de probar en Sandbox, cambiá PAYPAL_MODE a 'live' y
    repetí los pasos 1-2 con tus credenciales reales.
-============================================================
+===========================================================
 */
